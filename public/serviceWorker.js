@@ -6,9 +6,9 @@ const assets = [
   "/icon-256x256.png",
   "/icon-384x384.png",
   "/icon-512x512.png",
-  "/src/assets/icon.png",
-  "/src/assets/Img-404.png",
+  "/icon.png",
   "/icon.svg",
+  "/Img-404.png",
   "/assets/**/*.{js,css,png}",
 ];
 

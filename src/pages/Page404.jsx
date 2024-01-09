@@ -1,7 +1,7 @@
 import React from "react";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Image404 from "../assets/Img-404.png";
+import Image404 from "/Img-404.png";
 
 export default function Page404() {
   return (
