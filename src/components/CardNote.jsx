@@ -17,10 +17,9 @@ export default function CardNote({ id, title, createdAt, body }) {
         {title}
       </div>
       <div className="text-[0.8rem] mb-4">{showFormattedDate(createdAt)}</div>
-      <div className="text-sm sm:text-base text-slate-200">{`${body.slice(
-        0,
-        180
-      )}...`}</div>
+      <div className="text-sm sm:text-base text-slate-200">{`${
+        body.length > 100 ? body.slice(0, 180) + "..." : body
+      }`}</div>
     </Link>
   );
 }

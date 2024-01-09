@@ -8,19 +8,30 @@ import {
 } from "../utils/local-data";
 import { FaTrash } from "react-icons/fa";
 import { IoMdArchive } from "react-icons/io";
-import { MdUnarchive } from "react-icons/md";
+import { MdEdit, MdUnarchive } from "react-icons/md";
 import BtnNotes from "../components/BtnNotes";
 import PropTypes from "prop-types";
+import Navigation from "../components/Navigation";
+import DetailNotesHead from "../components/DetailNotesHead";
 
 const DetailNotesWrapper = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const navigateToHome = () => {
-    navigate("/");
+  const navigateToHome = (path) => {
+    navigate(path);
   };
 
-  return <DetailNotes idNotes={id} navigation={navigateToHome} />;
+  return (
+    <React.Fragment>
+      <div className="mt-20">
+        <div className="mb-10">
+          <Navigation />
+          <DetailNotes idNotes={id} navigation={navigateToHome} />
+        </div>
+      </div>
+    </React.Fragment>
+  );
 };
 
 class DetailNotes extends Component {
@@ -33,28 +44,17 @@ class DetailNotes extends Component {
 
     return (
       <div className="relative p-3 flex justify-center items-center flex-col space-y-14 sm:space-y-20 w-full mt-8">
-        <div
-          key={detailNote.id}
-          className="w-[85%] flex justify-center items-start flex-col"
-        >
-          <h1 className="text-white font-bold text-3xl sm:text-4xl lg:text-6xl mb-2 lg:mb-3">
-            {detailNote.title}
-          </h1>
-          <h3 className="text-xs sm:text-base mb-3 sm:mb-5 lg:mb-7">
-            {detailNote.createdAt}
-          </h3>
-          <p className="text-slate-200 text-sm sm:text-lg lg:text-xl">
-            {detailNote.body}
-          </p>
-        </div>
-
-        <div className="btn-wrapper flex justify-center items-center gap-3 sm:gap-5 fixed bottom-8 right-8">
+        <DetailNotesHead detailNote={detailNote} />
+        <div className="btn-wrapper flex justify-center items-center flex-wrap w-[120px] sm:w-[150px] gap-3 sm:gap-5 fixed bottom-5 right-5 sm:bottom-8 sm:right-8">
+          <BtnNotes Icon={MdEdit} handler={() => {
+            this.props.navigation(`/notes/edit/${this.props.idNotes}`);
+          }} />
           {!detailNote.archived ? (
             <BtnNotes
               Icon={IoMdArchive}
               handler={() => {
                 archiveNote(detailNote.id);
-                this.props.navigation();
+                this.props.navigation("/");
               }}
             />
           ) : (
@@ -62,7 +62,7 @@ class DetailNotes extends Component {
               Icon={MdUnarchive}
               handler={() => {
                 unarchiveNote(detailNote.id);
-                this.props.navigation();
+                this.props.navigation("/");
               }}
             />
           )}
@@ -70,7 +70,7 @@ class DetailNotes extends Component {
             Icon={FaTrash}
             handler={() => {
               deleteNote(detailNote.id);
-              this.props.navigation();
+              this.props.navigation("/");
             }}
           />
         </div>

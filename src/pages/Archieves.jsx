@@ -2,13 +2,20 @@ import React, { Component } from "react";
 import ActiveNoteSearch from "../components/ActiveNoteSearch";
 import { getArchivedNotes } from "../utils/local-data";
 import CardContainer from "../components/CardContainer";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import Navigation from "../components/Navigation";
+import BtnNotes from "../components/BtnNotes";
+import { MdAssignmentAdd } from "react-icons/md";
 
 const ArchievesWrapper = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const q = searchParams.get("q");
+  const navigate = useNavigate();
+
+  const navigateTo = () => {
+    navigate("/notes/new");
+  };
 
   const onKeywordParams = (q) => {
     let params = {};
@@ -18,7 +25,20 @@ const ArchievesWrapper = () => {
     setSearchParams(params);
   };
 
-  return <Archieves onnKeywordParams={onKeywordParams} defaultKeyword={q} />;
+  return (
+    <React.Fragment>
+      <div className="mt-20">
+        <div className="mb-10">
+          <Navigation />
+          <Archieves
+            onnKeywordParams={onKeywordParams}
+            defaultKeyword={q}
+            navigation={navigateTo}
+          />
+        </div>
+      </div>
+    </React.Fragment>
+  );
 };
 
 class Archieves extends Component {
@@ -60,6 +80,14 @@ class Archieves extends Component {
           onChangeValue={this.onKeywordChange}
         />
         <CardContainer notes={notesByQuery} isArchievePage={true} />
+        <div className="fixed bottom-7 right-7 z-[99]">
+          <BtnNotes
+            Icon={MdAssignmentAdd}
+            handler={() => {
+              this.props.navigation();
+            }}
+          />
+        </div>
       </div>
     );
   }
@@ -69,5 +97,6 @@ export default ArchievesWrapper;
 
 Archieves.propTypes = {
   onnKeywordParams: PropTypes.func.isRequired,
+  navigation: PropTypes.func.isRequired,
   defaultKeyword: PropTypes.string,
 };

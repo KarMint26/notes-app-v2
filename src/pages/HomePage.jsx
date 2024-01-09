@@ -2,13 +2,21 @@ import React, { Component } from "react";
 import ActiveNoteSearch from "../components/ActiveNoteSearch";
 import { getActiveNotes } from "../utils/local-data";
 import CardContainer from "../components/CardContainer";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import Navigation from "../components/Navigation";
+import { MdAssignmentAdd } from "react-icons/md";
+import BtnNotes from "../components/BtnNotes";
 
 const HomePageWrapper = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const q = searchParams.get("q");
+
+  const navigate = useNavigate();
+
+  const navigateTo = () => {
+    navigate("/notes/new");
+  };
 
   const onKeywordParams = (q) => {
     let params = {};
@@ -18,7 +26,20 @@ const HomePageWrapper = () => {
     setSearchParams(params);
   };
 
-  return <HomePage onnKeywordParams={onKeywordParams} defaultKeyword={q} />;
+  return (
+    <React.Fragment>
+      <div className="mt-20">
+        <div className="mb-10">
+          <Navigation />
+          <HomePage
+            onnKeywordParams={onKeywordParams}
+            defaultKeyword={q}
+            navigation={navigateTo}
+          />
+        </div>
+      </div>
+    </React.Fragment>
+  );
 };
 
 class HomePage extends Component {
@@ -60,6 +81,14 @@ class HomePage extends Component {
           onChangeValue={this.onKeywordChange}
         />
         <CardContainer notes={notesByQuery} isArchievePage={false} />
+        <div className="fixed bottom-7 right-7 z-[99]">
+          <BtnNotes
+            Icon={MdAssignmentAdd}
+            handler={() => {
+              this.props.navigation();
+            }}
+          />
+        </div>
       </div>
     );
   }
@@ -69,5 +98,6 @@ export default HomePageWrapper;
 
 HomePage.propTypes = {
   onnKeywordParams: PropTypes.func.isRequired,
+  navigation: PropTypes.func.isRequired,
   defaultKeyword: PropTypes.string,
 };
