@@ -19,7 +19,7 @@ export default function CardContainer({ notes, isArchievePage }) {
         </div>
       ) : (
         <div className="flex justify-center items-center">
-          {isArchievePage ? 'Arsip Kosong' : 'Tidak Ada Catatan'}
+          {isArchievePage ? 'Arsip kosong' : 'Tidak ada catatan'}
         </div>
       )}
     </React.Fragment>

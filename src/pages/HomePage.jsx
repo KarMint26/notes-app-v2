@@ -69,4 +69,5 @@ export default HomePageWrapper;
 
 HomePage.propTypes = {
   onnKeywordParams: PropTypes.func.isRequired,
+  defaultKeyword: PropTypes.string,
 };

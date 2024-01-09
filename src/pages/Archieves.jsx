@@ -69,4 +69,5 @@ export default ArchievesWrapper;
 
 Archieves.propTypes = {
   onnKeywordParams: PropTypes.func.isRequired,
+  defaultKeyword: PropTypes.string,
 };
