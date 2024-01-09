@@ -12,7 +12,7 @@ export default function Page404() {
         </div>
         <div className="-translate-y-20">
           <h1 className="mt-6 text-2xl font-bold tracking-tight text-white sm:text-4xl">
-            Uh-oh!
+            Uh-oh, sorry!
           </h1>
           <p className="mt-4 text-gray-500">We can't find that page.</p>
           <Link
