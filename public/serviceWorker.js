@@ -9,7 +9,7 @@ const assets = [
   "/src/assets/icon.png",
   "/src/assets/Img-404.png",
   "/icon.svg",
-  "/assets/**/*.{js,css}",
+  "/assets/**/*.{js,css,png}",
 ];
 
 self.addEventListener("install", (installEvent) => {
