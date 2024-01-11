@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    @apply transition duration-300;
+}
+
+html[class="dark"] {
+    background-color: #1D232A;
+}
+
+html[class="light"] {
+    background-color: #e0e0e0;
+}

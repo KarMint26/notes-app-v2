@@ -19,8 +19,8 @@ const EditNotesWrapper = () => {
 
   return (
     <React.Fragment>
-      <div className="mt-20">
-        <div className="mb-10">
+      <div className="pt-20">
+        <div className="pb-10">
           <Navigation />
           <EditNotes
             id={id}

@@ -58,8 +58,8 @@ class AddNotes extends Component {
 
   render() {
     return (
-      <div className="mt-20">
-        <div className="mb-10">
+      <div className="pt-20">
+        <div className="placeholder-shown:b-10">
           <Navigation />
           <div className="relative p-3 flex justify-center items-center flex-col space-y-14 sm:space-y-20 w-full mt-8 pt-8 sm:pt-10 lg:pt-12">
             <AddNotesFieldInput

@@ -15,20 +15,21 @@ export default function AddNotesFieldInput({
         name="title"
         id="title"
         placeholder={`${isUpdate ? "Update Catatan" : "Catatan Baru"}`}
-        className="text-white placeholder:text-slate-100 bg-transparent px-5 py-2 sm:py-3 font-bold text-3xl sm:text-4xl lg:text-6xl mb-2 lg:mb-3 w-full rounded-xl"
+        className="dark:text-white dark:placeholder:text-slate-100 text-gray-800 placeholder:text-gray-700 bg-transparent px-5 py-2 sm:py-3 font-bold text-3xl sm:text-4xl lg:text-6xl mb-2 lg:mb-3 w-full rounded-xl"
         style={{ outline: "none" }}
         value={title}
         onChange={onTitleChange}
+        required
       />
-      <input
-        type="text"
+      <textarea
         name="body"
         id="body"
         placeholder="Saya merupakan seorang..."
-        className="text-slate-200 bg-transparent px-5 py-2 sm:py-3 text-sm sm:text-lg lg:text-xl w-full"
+        className="dark:text-slate-200 dark:placeholder:text-slate-400 text-gray-600 placeholder:text-gray-500 bg-transparent px-5 py-2 sm:py-3 text-sm sm:text-lg lg:text-xl w-full"
         style={{ outline: "none" }}
         value={body}
         onChange={onBodyChange}
+        required
       />
     </div>
   );

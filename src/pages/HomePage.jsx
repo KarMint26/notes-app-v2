@@ -28,8 +28,8 @@ const HomePageWrapper = () => {
 
   return (
     <React.Fragment>
-      <div className="mt-20">
-        <div className="mb-10">
+      <div className="pt-20">
+        <div className="pb-10">
           <Navigation />
           <HomePage
             onnKeywordParams={onKeywordParams}
@@ -79,6 +79,7 @@ class HomePage extends Component {
         <ActiveNoteSearch
           value={this.state.keyword}
           onChangeValue={this.onKeywordChange}
+          isArchieved={false}
         />
         <CardContainer notes={notesByQuery} isArchievePage={false} />
         <div className="fixed bottom-7 right-7 z-[99]">

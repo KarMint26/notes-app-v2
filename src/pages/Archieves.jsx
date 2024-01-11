@@ -27,8 +27,8 @@ const ArchievesWrapper = () => {
 
   return (
     <React.Fragment>
-      <div className="mt-20">
-        <div className="mb-10">
+      <div className="pt-20">
+        <div className="pb-10">
           <Navigation />
           <Archieves
             onnKeywordParams={onKeywordParams}
@@ -78,6 +78,7 @@ class Archieves extends Component {
         <ActiveNoteSearch
           value={this.state.keyword}
           onChangeValue={this.onKeywordChange}
+          isArchieved={true}
         />
         <CardContainer notes={notesByQuery} isArchievePage={true} />
         <div className="fixed bottom-7 right-7 z-[99]">
