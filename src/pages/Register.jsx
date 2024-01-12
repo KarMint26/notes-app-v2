@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   return (
@@ -27,7 +28,18 @@ const Register = () => {
             placeholder={`Password Confirmation`}
             className="input input-bordered w-full px-5 dark:bg-slate-600 bg-slate-400/70 text-gray-800 dark:text-white dark:placeholder:text-slate-300 placeholder:text-gray-700"
           />
-          <button type="submit" className='px-5 py-2 font-bold text-slate-200 dark:text-gray-800 bg-gray-800 dark:bg-slate-400 rounded-lg self-end'>Login</button>
+          <div className="text-xs sm:text-sm self-start lg:text-base text-gray-800 dark:text-slate-200">
+            Already have account?{' '}
+            <Link to="/login" className="underline">
+              Login here
+            </Link>{' '}
+          </div>
+          <button
+            type="submit"
+            className="px-5 py-2 font-bold text-slate-200 dark:text-gray-800 bg-gray-800 dark:bg-slate-400 rounded-lg self-end"
+          >
+            Register
+          </button>
         </form>
       </div>
     </React.Fragment>
