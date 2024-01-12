@@ -28,5 +28,6 @@ InputForm.propTypes = {
   placeholder: string.isRequired,
   value: string.isRequired,
   handleChangeValue: func.isRequired,
-  isFocus: bool
+  isFocus: bool,
+  isPassword: bool,
 };

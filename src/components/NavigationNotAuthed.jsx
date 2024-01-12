@@ -1,19 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaArchive, FaHome, FaMoon, FaNotesMedical, FaSun, FaUser } from "react-icons/fa";
+import { FaMoon, FaSignInAlt, FaSignOutAlt, FaSun } from "react-icons/fa";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLocale } from "../contexts/LocaleContext";
 import { MdGTranslate } from "react-icons/md";
-import { RiLogoutCircleRFill } from "react-icons/ri";
-import { bool, func, string } from "prop-types";
 
-export default function Navigation({ username, onLogout, is404 = false }) {
+export default function NavigationNotAuthed() {
   const { theme, toggleTheme } = useTheme();
   const { locale, toggleLocale } = useLocale();
-
-  if (is404) {
-    return null;
-  }
 
   return (
     <div className="navbar dark:bg-slate-900 bg-gray-700 py-2 pr-5 fixed top-0 z-[999]">
@@ -35,40 +29,22 @@ export default function Navigation({ username, onLogout, is404 = false }) {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dark:bg-slate-900 bg-gray-700 rounded-box w-52"
           >
             <li>
-              <Link className="flex flex-col text-white justify-start items-center" to={"/"}>
-                <FaUser className="text-2xl" />
-                <h1>{`${locale === "en" ? "Hi!" : "Hai!"} ${username}`}</h1>
+              <Link className="flex text-white justify-start items-center" to={'/'}>
+                <FaSignInAlt />
+                <p>{locale === "en" ? "Login" : "Masuk"}</p>
               </Link>
             </li>
             <li>
-              <Link className="flex text-white justify-start items-center" to={"/"}>
-                <FaHome />
-                <p>{locale === "en" ? "Homepage" : "Halaman Utama"}</p>
+              <Link className="flex text-white justify-start items-center" to={'/register'}>
+                <FaSignOutAlt />
+                <p>{locale === "en" ? "Register" : "Daftar"}</p>
               </Link>
-            </li>
-            <li>
-              <Link className="flex text-white justify-start items-center" to={"/notes/new"}>
-                <FaNotesMedical />
-                <p>{locale === "en" ? "New Note" : "Catatan baru"}</p>
-              </Link>
-            </li>
-            <li>
-              <Link className="flex text-white justify-start items-center" to={"/notes/archieves"}>
-                <FaArchive />
-                <p>{locale === "en" ? "Archieves" : "Arsip"}</p>
-              </Link>
-            </li>
-            <li>
-              <div className="flex text-white justify-start items-center" onClick={() => onLogout()}>
-                <RiLogoutCircleRFill />
-                <p>{locale === "en" ? "Logout" : "Keluar"}</p>
-              </div>
             </li>
           </ul>
         </div>
       </div>
       <div className="navbar-center">
-        <Link to={"/"} className="btn btn-ghost text-xl text-white">
+        <Link to={'/'} className="btn btn-ghost text-xl text-white">
           {locale === "en" ? "Notes App" : "Aplikasi Catatan"}
         </Link>
       </div>
@@ -77,7 +53,7 @@ export default function Navigation({ username, onLogout, is404 = false }) {
           onClick={toggleTheme}
           className="darkmode-toggle text-white dark:text-slate-300 cursor-pointer transition-none"
         >
-          {theme === "light" ? <FaMoon className="sm:text-xl text-lg" /> : <FaSun className="sm:text-xl text-lg" />}
+          {theme === 'light' ? <FaMoon className="sm:text-xl text-lg" /> : <FaSun className="sm:text-xl text-lg" />}
         </div>
         <div
           onClick={toggleLocale}
@@ -89,9 +65,3 @@ export default function Navigation({ username, onLogout, is404 = false }) {
     </div>
   );
 }
-
-Navigation.propTypes = {
-  username: string.isRequired,
-  onLogout: func.isRequired,
-  is404: bool
-};

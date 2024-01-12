@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import CardNote from "./CardNote";
-import { useLocale } from "../contexts/LocaleContext";
+import React from 'react';
+import PropTypes from 'prop-types';
+import CardNote from './CardNote';
+import { useLocale } from '../contexts/LocaleContext';
 
 export default function CardContainer({ notes, isArchievePage }) {
   const { locale } = useLocale();
@@ -17,12 +17,12 @@ export default function CardContainer({ notes, isArchievePage }) {
       ) : (
         <div className="flex justify-center items-center dark:text-gray-400 text-gray-700">
           {isArchievePage
-            ? locale === "en"
-              ? "Empty Archieves"
-              : "Arsip Kosong"
-            : locale === "en"
-            ? "Empty Notes"
-            : "Tidak Ada Catatan"}
+            ? locale === 'en'
+              ? 'Empty Archieves'
+              : 'Arsip Kosong'
+            : locale === 'en'
+            ? 'Empty Notes'
+            : 'Tidak Ada Catatan'}
         </div>
       )}
     </React.Fragment>

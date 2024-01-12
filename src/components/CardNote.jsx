@@ -4,8 +4,14 @@ import { showFormattedDate } from "../utils";
 import { Link } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 
-export default function CardNote({ id, title, createdAt, body }) {
+export default function CardNote({ id, title, createdAt, body, isLoading = false }) {
   const { theme } = useTheme();
+
+  if(isLoading){
+    return (
+      <div className="skeleton w-[300px] h-[250px] sm:h-[300px]"></div>
+    )
+  }
 
   return (
     <Link
@@ -32,4 +38,5 @@ CardNote.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool,
 };

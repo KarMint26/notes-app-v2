@@ -1,12 +1,11 @@
 import React from "react";
-import Navigation from "../components/Navigation";
 import BtnNotes from "../components/BtnNotes";
 import { FaClipboardCheck } from "react-icons/fa6";
-import { addNote } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
 import AddNotesFieldInput from "../components/AddNotesFieldInput";
 import { useLocale } from "../contexts/LocaleContext";
 import useInput from "../hooks/useInput";
+import { addNote } from "../utils/network-data";
 
 const AddNotes = () => {
   const navigate = useNavigate();
@@ -41,7 +40,6 @@ const AddNotes = () => {
   return (
     <div className="pt-20">
       <div className="placeholder-shown:b-10">
-        <Navigation />
         <div className="relative p-3 flex justify-center items-center flex-col space-y-14 sm:space-y-20 w-full mt-8 pt-8 sm:pt-10 lg:pt-12">
           <AddNotesFieldInput
             title={title}
