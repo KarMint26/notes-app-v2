@@ -21,13 +21,11 @@ const Register = () => {
             type="text"
             placeholder={`Password`}
             className="input input-bordered w-full px-5 dark:bg-slate-600 bg-slate-400/70 text-gray-800 dark:text-white dark:placeholder:text-slate-300 placeholder:text-gray-700"
-            autoFocus
           />
           <input
             type="text"
             placeholder={`Password Confirmation`}
             className="input input-bordered w-full px-5 dark:bg-slate-600 bg-slate-400/70 text-gray-800 dark:text-white dark:placeholder:text-slate-300 placeholder:text-gray-700"
-            autoFocus
           />
           <button type="submit" className='px-5 py-2 font-bold text-slate-200 dark:text-gray-800 bg-gray-800 dark:bg-slate-400 rounded-lg self-end'>Login</button>
         </form>
