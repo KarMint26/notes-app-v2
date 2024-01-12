@@ -11,7 +11,8 @@ import useInput from "../hooks/useInput";
 const AddNotes = () => {
   const navigate = useNavigate();
   const { locale } = useLocale();
-  const { title, body, handleTitleChange, handleBodyChange } = useInput(false, "");
+  const { value: title, handleValueChange: handleTitleChange } = useInput(false, "");
+  const { value: body, handleValueChange: handleBodyChange } = useInput(false, "");
 
   const navigateToHome = () => {
     navigate("/");

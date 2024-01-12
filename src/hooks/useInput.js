@@ -1,22 +1,15 @@
 import React from "react";
 
-const useInput = (isEdit, dataNotes) => {
-  const [title, setTitle] = React.useState(() => {
-    return isEdit ? dataNotes.title : ""
-  });
-  const [body, setBody] = React.useState(() => {
-    return isEdit ? dataNotes.body : ""
+const useInput = (isEdit, defaultValue) => {
+  const [value, setValue] = React.useState(() => {
+    return isEdit ? defaultValue : ""
   });
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
+  const handleValueChange = ({ target }) => {
+    setValue(target.value);
   };
 
-  const handleBodyChange = (event) => {
-    setBody(event.target.value);
-  };
-
-  return { title, body, handleTitleChange, handleBodyChange };
+  return { value, handleValueChange };
 };
 
 export default useInput;
