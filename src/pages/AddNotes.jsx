@@ -1,92 +1,61 @@
-import React, { Component } from "react";
+import React from "react";
 import Navigation from "../components/Navigation";
 import BtnNotes from "../components/BtnNotes";
 import { FaClipboardCheck } from "react-icons/fa6";
 import { addNote } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 import AddNotesFieldInput from "../components/AddNotesFieldInput";
+import { useLocale } from "../contexts/LocaleContext";
+import useInput from "../hooks/useInput";
 
-const AddNotesWrapper = () => {
+const AddNotes = () => {
   const navigate = useNavigate();
+  const { locale } = useLocale();
+  const { title, body, handleTitleChange, handleBodyChange } = useInput(false, "");
 
   const navigateToHome = () => {
     navigate("/");
   };
 
-  return <AddNotes navigation={navigateToHome} />;
-};
-
-class AddNotes extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      title: "",
-      body: "",
-    };
-
-    this.onTitleChange = this.onTitleChange.bind(this);
-    this.onBodyChange = this.onBodyChange.bind(this);
-    this.handlerSubmit = this.handlerSubmit.bind(this);
-  }
-
-  onTitleChange({ target }) {
-    this.setState(() => {
-      return {
-        title: target.value,
+  const handleSubmit = () => {
+    if (title !== "" && body !== "") {
+      const dataPost = {
+        title: title,
+        body: body
       };
-    });
-  }
 
-  onBodyChange({ target }) {
-    this.setState(() => {
-      return {
-        body: target.value,
-      };
-    });
-  }
+      addNote(dataPost);
+      navigateToHome();
+    } else {
+      alert(
+        `${
+          locale === "en"
+            ? "The contents of the title and description cannot be empty"
+            : "Isi Judul dan Deskripsinya tidak boleh kosong"
+        }`
+      );
+    }
+  };
 
-  handlerSubmit() {
-    const dataPost = {
-      title: this.state.title,
-      body: this.state.body,
-    };
-
-    addNote(dataPost);
-  }
-
-  render() {
-    return (
-      <div className="pt-20">
-        <div className="placeholder-shown:b-10">
-          <Navigation />
-          <div className="relative p-3 flex justify-center items-center flex-col space-y-14 sm:space-y-20 w-full mt-8 pt-8 sm:pt-10 lg:pt-12">
-            <AddNotesFieldInput
-              title={this.state.title}
-              body={this.state.body}
-              onTitleChange={this.onTitleChange}
-              onBodyChange={this.onBodyChange}
-              isUpdate={false}
-            />
-            <div className="fixed bottom-7 right-7 z-[99]">
-              <BtnNotes
-                Icon={FaClipboardCheck}
-                handler={() => {
-                  this.handlerSubmit();
-                  this.props.navigation();
-                }}
-              />
-            </div>
+  return (
+    <div className="pt-20">
+      <div className="placeholder-shown:b-10">
+        <Navigation />
+        <div className="relative p-3 flex justify-center items-center flex-col space-y-14 sm:space-y-20 w-full mt-8 pt-8 sm:pt-10 lg:pt-12">
+          <AddNotesFieldInput
+            title={title}
+            body={body}
+            onTitleChange={handleTitleChange}
+            onBodyChange={handleBodyChange}
+            isUpdate={false}
+          />
+          <div className="fixed bottom-7 right-7 z-[99]">
+            <BtnNotes Icon={FaClipboardCheck} handler={handleSubmit} />
           </div>
         </div>
       </div>
-    );
-  }
-}
-
-export default AddNotesWrapper;
-
-AddNotes.propTypes = {
-  navigation: PropTypes.func.isRequired,
+    </div>
+  );
 };
+
+export default AddNotes;
