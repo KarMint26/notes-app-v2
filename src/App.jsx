@@ -6,6 +6,8 @@ import DetailNotes from "./pages/DetailNotes";
 import Archieves from "./pages/Archieves";
 import Page404 from "./pages/Page404";
 import EditNotes from "./pages/EditNotes";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Route path="/notes/:id" element={<DetailNotes />} />
       <Route path="/notes/archieves" element={<Archieves />} />
       <Route path="/notes/edit/:id" element={<EditNotes />} />
+      <Route path="/login" element={<Login />}/>
+      <Route path="/register" element={<Register />} />
       <Route path="/*" element={<Page404 />} />
     </Routes>
   );
