@@ -61,8 +61,8 @@ const Register = () => {
             type="text"
             value={name}
             placeholder={locale === "en" ? "Name" : "Nama"}
-            isFocus={true}
             handleChangeValue={handleNameChange}
+            isFocus
           />
 
           <InputForm type="email" value={email} placeholder="Email" handleChangeValue={handleEmailChange} />

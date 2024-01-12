@@ -25,9 +25,13 @@ const Archieves = () => {
     const getDataNotes = () => {
       getArchivedNotes().then(({ data }) => {
         if (data) {
-          setTimeout(() => {
+          if(data.length > 0){
+            setTimeout(() => {
+              setIsLoading(false);
+            }, 1500);
+          } else {
             setIsLoading(false);
-          }, 1500);
+          }
         }
 
         setDataNotes(data);
