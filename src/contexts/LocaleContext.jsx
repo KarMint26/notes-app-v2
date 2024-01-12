@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const LocaleContext = React.createContext({
   locale: "en",
@@ -36,3 +37,7 @@ export const LocaleProvider = ({ children }) => {
 export const useLocale = () => {
   return React.useContext(LocaleContext);
 };
+
+LocaleProvider.propTypes = {
+  children: PropTypes.node,
+}

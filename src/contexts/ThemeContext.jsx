@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const ThemeContext = React.createContext({
   theme: "dark",
@@ -6,7 +7,7 @@ const ThemeContext = React.createContext({
 });
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = React.useState("dark");
+  const [theme, setTheme] = React.useState(() => localStorage.getItem("theme") || "dark");
 
   const toggleTheme = () => {
     setTheme((prevState) => {
@@ -27,10 +28,7 @@ export const ThemeProvider = ({ children }) => {
   }, [theme]);
 
   React.useEffect(() => {
-    const themeHistory = localStorage.getItem("theme") || "light";
-    document.querySelector("html").setAttribute("class", themeHistory);
-
-    setTheme(themeHistory);
+    document.querySelector("html").setAttribute("class", theme);
   },[]);
 
   return <ThemeContext.Provider value={dataTheme}>{children}</ThemeContext.Provider>;
@@ -39,3 +37,7 @@ export const ThemeProvider = ({ children }) => {
 export const useTheme = () => {
   return React.useContext(ThemeContext);
 };
+
+ThemeProvider.propTypes = {
+  children: PropTypes.node,
+}
