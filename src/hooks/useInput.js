@@ -9,7 +9,7 @@ const useInput = (isEdit, defaultValue) => {
     setValue(target.value);
   };
 
-  return { value, handleValueChange };
+  return [ value, handleValueChange ];
 };
 
 export default useInput;

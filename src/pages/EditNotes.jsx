@@ -12,8 +12,8 @@ const EditNotes = () => {
  const navigate = useNavigate();
  const dataNotesById = getNote(id);
 
- const { value: title, handleValueChange: handleTitleChange } = useInput(true, dataNotesById.title);
- const { value: body, handleValueChange: handleBodyChange } = useInput(true, dataNotesById.body);
+ const [ title, handleTitleChange ] = useInput(true, dataNotesById.title);
+ const [ body, handleBodyChange ] = useInput(true, dataNotesById.body);
 
  const handleSubmit = () => {
   if (title !== "" && body !== "") {
